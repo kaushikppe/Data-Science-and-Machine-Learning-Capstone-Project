@@ -211,3 +211,19 @@ features_one_hot.to_csv('dataset_part_3.csv', index=False)
 
 # Confirm the data type conversion
 print(features_one_hot.dtypes)
+
+#Question 2
+# Select categorical columns for encoding
+categorical_columns = ['Orbit', 'LaunchSite', 'LandingPad', 'Serial']
+
+# Apply one-hot encoding
+features_one_hot = pd.get_dummies(features, columns=categorical_columns)
+
+# Print the total number of columns
+print("Total number of columns:", features_one_hot.shape[1])
+
+#Question 3
+sns.catplot(y="LaunchSite", x="FlightNumber", hue="Class", data=df, aspect=1)
+plt.ylabel("Launch Site", fontsize=15)
+plt.xlabel("Flight Number", fontsize=15)
+plt.show()
