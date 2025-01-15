@@ -135,6 +135,6 @@ for key in launch_dict:
 df = pd.DataFrame(launch_dict)
 
 # Save to CSV
-df.to_csv('C:/Users/kaush/OneDrive/Documents/GitHub/Data-Science-and-Machine-Learning-Capstone-Project/spacex_web_scraped.csv', index=False)
+df.to_csv('spacex_web_scraped.csv', index=False)
 
 print("Web scraping completed. Data saved to 'spacex_web_scraped.csv'.")
