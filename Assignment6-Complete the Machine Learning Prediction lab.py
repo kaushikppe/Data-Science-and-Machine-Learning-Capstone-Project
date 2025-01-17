@@ -270,3 +270,42 @@ print("Best kernel:", svm_cv.best_params_['kernel'])
 # Get the accuracy of the best model on the test data
 accuracy = tree_cv.score(X_test, Y_test)
 print(f"Accuracy on the test data: {accuracy}")
+
+# Assume accuracies are already calculated
+model_performance = {
+    'Logistic Regression': logreg_cv.score(X_test, Y_test),
+    'Support Vector Machine': svm_cv.score(X_test, Y_test),
+    'Decision Tree': tree_cv.score(X_test, Y_test),
+    'K-Nearest Neighbors': knn_cv.score(X_test, Y_test)
+}
+
+# Determine the best model
+best_model_name = max(model_performance, key=model_performance.get)
+best_model_accuracy = model_performance[best_model_name]
+
+print(f"The best performing model is {best_model_name} with an accuracy of {best_model_accuracy:.4f}")
+
+# Get the best model's predictions
+if best_model_name == 'Logistic Regression':
+    yhat = logreg_cv.predict(X_test)
+elif best_model_name == 'Support Vector Machine':
+    yhat = svm_cv.predict(X_test)
+elif best_model_name == 'Decision Tree':
+    yhat = tree_cv.predict(X_test)
+elif best_model_name == 'K-Nearest Neighbors':
+    yhat = knn_cv.predict(X_test)
+
+# Plot the confusion matrix
+plot_confusion_matrix(Y_test, yhat)
+
+# Explanation
+print(f"""
+Explanation:
+- The confusion matrix shows the true positives, true negatives, false positives, and false negatives for the {best_model_name}.
+- Each cell provides the count of predictions:
+  - Top-left: True negatives (Did not land, predicted correctly).
+  - Top-right: False positives (Did not land, predicted as landed).
+  - Bottom-left: False negatives (Landed, predicted as did not land).
+  - Bottom-right: True positives (Landed, predicted correctly).
+- High values in the diagonal (top-left and bottom-right) indicate a well-performing model.
+""")
