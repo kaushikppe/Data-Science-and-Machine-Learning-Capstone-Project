@@ -246,4 +246,4 @@ features_one_hot = features_one_hot.astype('float64')
 print(features_one_hot.dtypes)
 
 # Optionally, export to CSV for further use
-features_one_hot.to_csv('C:/Users/kaush/OneDrive/Documents/GitHub/Data-Science-and-Machine-Learning-Capstone-Project/dataset_part_3.csv', index=False)
+features_one_hot.to_csv('dataset_part_3.csv', index=False)
